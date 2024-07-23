@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
 ruby "3.2.2"
@@ -24,7 +26,7 @@ gem "puma", ">= 5.0"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
+gem "tzinfo-data", platforms: [:mswin, :mswin64, :mingw, :x64_mingw, :jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -41,8 +43,8 @@ gem "rubocop-shopify", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
-  gem "faker", "~> 3.2", :groups => [:development, :test]
+  gem "debug", platforms: [:mri, :mswin, :mswin64, :mingw, :x64_mingw]
+  gem "faker", "~> 3.2", groups: [:development, :test]
 end
 
 group :development do
@@ -50,4 +52,3 @@ group :development do
   # gem "spring"
   gem "annotate", "~> 3.2"
 end
-
