@@ -1,0 +1,9 @@
+{
+    "byesig.fold": false,
+    "byesig.opacity": 0.5,
+    "byesig.showIcon": false,
+    "rubyLsp.rubyVersionManager": {
+        "identifier": "rvm"
+    },
+    "rubyLsp.formatter": "auto",
+}
