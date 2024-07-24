@@ -55,3 +55,7 @@ group :development do
   # gem "spring"
   gem "annotate", "~> 3.2"
 end
+
+group :test do
+  gem "mocha", "~> 2.1"
+end
