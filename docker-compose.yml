@@ -13,7 +13,7 @@ services:
       - data-network
 
   db:
-    image: postgres:16.1
+    image: postgres:16.3
     container_name: db
     restart: always
     environment:
