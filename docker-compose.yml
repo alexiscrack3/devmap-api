@@ -1,6 +1,17 @@
 version: "3.8"
 
 services:
+  api:
+    container_name: api
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_HOST=db
+    ports:
+      - 3000:3000
+    networks:
+      - data-network
+
   db:
     image: postgres:16.1
     container_name: db
