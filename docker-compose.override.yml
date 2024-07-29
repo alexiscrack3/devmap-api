@@ -5,5 +5,5 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      # args:
-      #   - RAILS_ENVIRONMENT=development
+      args:
+        - RAILS_ENVIRONMENT=development
