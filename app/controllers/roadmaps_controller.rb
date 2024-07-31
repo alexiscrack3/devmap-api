@@ -1,53 +1,68 @@
+# typed: strict
 # frozen_string_literal: true
 
 class RoadmapsController < ApplicationController
-  before_action :set_roadmap, only: [:show, :update, :destroy]
+  # before_action :set_roadmap, only: [:show]
+
+  sig { void }
+  def initialize
+    super
+    @roadmaps_service = T.let(RoadmapsService.new, RoadmapsService)
+  end
 
   # GET /roadmaps
+  sig { void }
   def index
-    @roadmaps = Roadmap.all
+    roadmaps = @roadmaps_service.find_all
 
-    render(json: @roadmaps)
+    render(json: ApiDocument.new(data: roadmaps))
   end
 
   # GET /roadmaps/1
+  sig { void }
   def show
-    render(json: @roadmap)
+    roadmap = @roadmaps_service.find(roadmap_id_param)
+
+    render(json: ApiDocument.new(data: roadmap))
   end
 
   # POST /roadmaps
+  sig { void }
   def create
-    @roadmap = Roadmap.new(roadmap_params)
-
-    if @roadmap.save
-      render(json: @roadmap, status: :created, location: @roadmap)
+    roadmap = @roadmaps_service.create(roadmap_params.to_h)
+    if roadmap.valid?
+      render(json: roadmap, status: :created, location: roadmap)
     else
-      render(json: @roadmap.errors, status: :unprocessable_entity)
+      render(json: roadmap.errors, status: :unprocessable_entity)
     end
   end
 
   # PATCH/PUT /roadmaps/1
+  sig { void }
   def update
-    if @roadmap.update(roadmap_params)
-      render(json: @roadmap)
+    roadmap = @roadmaps_service.update(roadmap_id_param, roadmap_params.to_h)
+    if roadmap.valid?
+      render(json: roadmap)
     else
-      render(json: @roadmap.errors, status: :unprocessable_entity)
+      render(json: roadmap.errors, status: :unprocessable_entity)
     end
   end
 
   # DELETE /roadmaps/1
+  sig { void }
   def destroy
-    @roadmap.destroy!
+    @roadmaps_service.delete(roadmap_id_param)
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_roadmap
-    @roadmap = Roadmap.find(params[:id])
+  sig { returns(Integer) }
+  def roadmap_id_param
+    params[:id].to_i
   end
 
   # Only allow a list of trusted parameters through.
+  sig { returns(ActionController::Parameters) }
   def roadmap_params
     params.require(:roadmap).permit(:title)
   end
