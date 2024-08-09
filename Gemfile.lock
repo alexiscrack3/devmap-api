@@ -131,6 +131,8 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.3)
+    nokogiri (1.16.6-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.16.6-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.6-x86_64-darwin)
@@ -216,6 +218,7 @@ GEM
     sorbet (0.5.11268)
       sorbet-static (= 0.5.11268)
     sorbet-runtime (0.5.11268)
+    sorbet-static (0.5.11268-aarch64-linux)
     sorbet-static (0.5.11268-universal-darwin)
     sorbet-static-and-runtime (0.5.11268)
       sorbet (= 0.5.11268)
@@ -254,6 +257,7 @@ GEM
     zeitwerk (2.6.16)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin
   x86_64-darwin
 
