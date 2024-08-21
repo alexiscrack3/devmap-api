@@ -20,4 +20,13 @@ class RoadmapTest < ActiveSupport::TestCase
       refute roadmap.persisted?
     end
   end
+
+  test "should not save roadmap with duplicate title" do
+    title = Faker::ProgrammingLanguage.name
+    Roadmap.create(title: title)
+
+    assert_raises ActiveRecord::RecordInvalid do
+      Roadmap.create!(title: title)
+    end
+  end
 end

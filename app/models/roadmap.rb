@@ -10,5 +10,5 @@
 #  updated_at :datetime         not null
 #
 class Roadmap < ApplicationRecord
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: { case_sensitive: false }
 end
