@@ -2,8 +2,8 @@
 
 frontend:
   title: Frontend
-  description: <%= Faker::Lorem.sentence %>
+  description: Frontend description
 
 backend:
   title: Backend
-  description: <%= Faker::Lorem.sentence %>
+  description: Backend description
