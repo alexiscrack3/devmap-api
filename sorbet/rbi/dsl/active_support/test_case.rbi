@@ -7,4 +7,10 @@
 class ActiveSupport::TestCase
   sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
   def roadmaps(*fixture_names); end
+
+  sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
+  def sections(*fixture_names); end
+
+  sig { params(fixture_names: T.any(String, Symbol)).returns(T.untyped) }
+  def steps(*fixture_names); end
 end
