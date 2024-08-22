@@ -123,7 +123,7 @@ roadmaps.each do |roadmap|
   title = roadmap[:title]
   new_roadmap = Roadmap.create!(
     title:,
-    description: "Step by step guide to becoming a modern #{title.downcase} developer in 2024",
+    description: "Step by step guide to becoming a modern #{title.capitalize} expert in #{Time.now.utc.year}",
   )
   roadmap[:steps].each do |step|
     new_step = Step.create!(
