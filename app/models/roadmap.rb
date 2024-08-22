@@ -12,4 +12,6 @@
 #
 class Roadmap < ApplicationRecord
   validates :title, presence: true, uniqueness: { case_sensitive: false }
+
+  has_many :steps, dependent: :destroy
 end

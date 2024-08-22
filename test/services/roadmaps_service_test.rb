@@ -19,7 +19,7 @@ class RoadmapsServiceTest < ActiveSupport::TestCase
 
     actual = @roadmaps_service.find(roadmap.id)
 
-    assert_equal "MyString", actual.title
+    assert_equal "Frontend", actual.title
   end
 
   test "#find returns nil when id is not found" do

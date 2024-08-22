@@ -10,22 +10,71 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+Step.destroy_all
 Roadmap.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!(:steps)
 ActiveRecord::Base.connection.reset_pk_sequence!(:roadmaps)
 
 roadmaps = [
-  "Frontend",
-  "Backend",
-  "DevOps",
-  "Full Stack",
-  "Android",
-  "iOS",
-  "Ruby on Rails",
+  {
+    title: "Frontend",
+    steps: [],
+  },
+  {
+    title: "Backend",
+    steps: [
+      {
+        title: "Internet",
+      },
+      {
+        title: "Pick a language",
+      },
+      {
+        title: "Version Control Systems",
+      },
+      {
+        title: "Repo Hosting Services",
+      },
+      {
+        title: "Relational Databases",
+      },
+      {
+        title: "Learn About APIs",
+      },
+      {
+        title: "Caching",
+      },
+      {
+        title: "Web Security",
+      },
+      {
+        title: "Testing",
+      },
+      {
+        title: "CI/CD",
+      },
+    ],
+  },
+  {
+    title: "DevOps",
+    steps: [],
+  },
+  {
+    title: "Ruby on Rails",
+    steps: [],
+  },
 ]
 
 roadmaps.each do |roadmap|
-  Roadmap.create(
-    title: roadmap,
-    description: "Step by step guide to becoming a modern #{roadmap.downcase} developer in 2024",
+  title = roadmap[:title]
+  new_roadmap = Roadmap.create!(
+    title:,
+    description: "Step by step guide to becoming a modern #{title.downcase} developer in 2024",
   )
+  roadmap[:steps].each do |step|
+    Step.create!(
+      title: step[:title],
+      roadmap: new_roadmap,
+    )
+  end
 end

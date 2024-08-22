@@ -14,7 +14,7 @@ class RoadmapsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create roadmap" do
     assert_difference("Roadmap.count") do
-      post roadmaps_url, params: { roadmap: { title: @roadmap.title } }, as: :json
+      post roadmaps_url, params: { roadmap: { title: "test" } }, as: :json
     end
 
     assert_response :created
