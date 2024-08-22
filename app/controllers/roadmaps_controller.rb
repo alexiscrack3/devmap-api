@@ -22,8 +22,16 @@ class RoadmapsController < ApplicationController
   sig { void }
   def show
     roadmap = @roadmaps_service.find(roadmap_id_param)
+    options = {
+      include: {
+        steps: {
+          include: :sections,
+        },
+      },
+      except: [],
+    }
 
-    render(json: ApiDocument.new(data: roadmap))
+    render(json: ApiDocument.new(data: roadmap.as_json(options)))
   end
 
   # POST /roadmaps

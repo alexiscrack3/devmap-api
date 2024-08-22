@@ -9,7 +9,9 @@ class RoadmapsService < ApplicationService
 
   sig { params(id: Integer).returns(Roadmap) }
   def find(id)
-    Roadmap.find(id)
+    Roadmap
+      .includes(steps: [:sections])
+      .find(id)
   end
 
   sig { params(params: T::Hash[Symbol, T.untyped]).returns(Roadmap) }
