@@ -11,6 +11,7 @@
 #   end
 
 Roadmap.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!(:roadmaps)
 
 roadmaps = [
   "Frontend",
