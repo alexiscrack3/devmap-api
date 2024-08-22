@@ -12,4 +12,5 @@
 #
 class Step < ApplicationRecord
   belongs_to :roadmap
+  has_many :sections, dependent: :destroy
 end

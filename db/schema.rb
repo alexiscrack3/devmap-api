@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_22_125703) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_22_141418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_125703) do
     t.index(["title"], name: "index_roadmaps_on_title", unique: true)
   end
 
+  create_table "sections", force: :cascade do |t|
+    t.string("title")
+    t.bigint("step_id", null: false)
+    t.datetime("created_at", null: false)
+    t.datetime("updated_at", null: false)
+    t.index(["step_id"], name: "index_sections_on_step_id")
+  end
+
   create_table "steps", force: :cascade do |t|
     t.string("title")
     t.datetime("created_at", null: false)
@@ -32,5 +40,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_125703) do
     t.index(["roadmap_id"], name: "index_steps_on_roadmap_id")
   end
 
+  add_foreign_key "sections", "steps"
   add_foreign_key "steps", "roadmaps"
 end

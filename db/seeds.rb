@@ -1,3 +1,4 @@
+# typed: true
 # frozen_string_literal: true
 
 # This file should ensure the existence of records required to run the application in every environment (production,
@@ -10,8 +11,10 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+Section.destroy_all
 Step.destroy_all
 Roadmap.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!(:sections)
 ActiveRecord::Base.connection.reset_pk_sequence!(:steps)
 ActiveRecord::Base.connection.reset_pk_sequence!(:roadmaps)
 
@@ -60,6 +63,57 @@ roadmaps = [
     steps: [],
   },
   {
+    title: "Ruby",
+    steps: [
+      {
+        title: "Basic Programming",
+        sections: [
+          {
+            title: "Syntax and Data Types",
+          },
+          {
+            title: "Variables and Constants",
+          },
+          {
+            title: "Control Structures",
+          },
+          {
+            title: "Loops",
+          },
+          {
+            title: "Exception Handling",
+          },
+          {
+            title: "Command Line Input/Output",
+          },
+        ],
+      },
+      {
+        title: "Advanced Topics",
+        sections: [
+          {
+            title: "Blocs, Procs and Lambdas",
+          },
+          {
+            title: "Modules and Mixins",
+          },
+          {
+            title: "Metaprogramming",
+          },
+          {
+            title: "Garbage Collection",
+          },
+          {
+            title: "Threading and Concurrency",
+          },
+          {
+            title: "Fibers",
+          },
+        ],
+      },
+    ],
+  },
+  {
     title: "Ruby on Rails",
     steps: [],
   },
@@ -72,9 +126,16 @@ roadmaps.each do |roadmap|
     description: "Step by step guide to becoming a modern #{title.downcase} developer in 2024",
   )
   roadmap[:steps].each do |step|
-    Step.create!(
+    new_step = Step.create!(
       title: step[:title],
       roadmap: new_roadmap,
     )
+
+    step[:sections]&.each do |section|
+      Section.create!(
+        title: section[:title],
+        step: new_step,
+      )
+    end
   end
 end
