@@ -4,7 +4,7 @@ require "test_helper"
 
 class RoadmapsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @roadmap = roadmaps(:one)
+    @roadmap = roadmaps(:frontend)
   end
 
   test "should get index" do
@@ -13,8 +13,12 @@ class RoadmapsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create roadmap" do
+    roadmap = {
+      title: Faker::ProgrammingLanguage.name,
+      description: Faker::Lorem.sentence,
+    }
     assert_difference("Roadmap.count") do
-      post roadmaps_url, params: { roadmap: { title: "test" } }, as: :json
+      post roadmaps_url, params: { roadmap: roadmap }, as: :json
     end
 
     assert_response :created

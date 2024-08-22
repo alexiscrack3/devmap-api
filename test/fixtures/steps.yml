@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  roadmap: one
+  title: Step 1
+  roadmap: frontend
 
 two:
-  title: MyString
-  roadmap: two
+  title: Step 2
+  roadmap: backend

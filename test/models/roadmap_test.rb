@@ -3,8 +3,11 @@
 require "test_helper"
 
 class RoadmapTest < ActiveSupport::TestCase
-  test "should save roadmap with title" do
-    roadmap = Roadmap.new(title: Faker::ProgrammingLanguage.name)
+  test "should save roadmap" do
+    roadmap = Roadmap.new(
+      title: Faker::ProgrammingLanguage.name,
+      description: Faker::Lorem.sentence,
+    )
 
     roadmap.save!
 

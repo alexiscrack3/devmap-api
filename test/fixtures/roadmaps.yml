@@ -1,7 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+frontend:
   title: Frontend
+  description: <%= Faker::Lorem.sentence %>
 
-two:
+backend:
   title: Backend
+  description: <%= Faker::Lorem.sentence %>

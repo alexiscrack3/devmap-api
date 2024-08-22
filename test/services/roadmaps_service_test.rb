@@ -15,11 +15,12 @@ class RoadmapsServiceTest < ActiveSupport::TestCase
   end
 
   test "#find returns roadmap when id is found" do
-    roadmap = roadmaps(:one)
+    roadmap = roadmaps(:frontend)
 
     actual = @roadmaps_service.find(roadmap.id)
 
     assert_equal "Frontend", actual.title
+    assert_equal roadmap.description, actual.description
   end
 
   test "#find returns nil when id is not found" do
@@ -31,7 +32,10 @@ class RoadmapsServiceTest < ActiveSupport::TestCase
   end
 
   test "#create returns roadmap when valid" do
-    params = { title: Faker::ProgrammingLanguage.name }
+    params = {
+      title: Faker::ProgrammingLanguage.name,
+      description: Faker::Lorem.sentence,
+    }
 
     assert_difference("Roadmap.count", 1) do
       actual = @roadmaps_service.create(params)
@@ -54,7 +58,7 @@ class RoadmapsServiceTest < ActiveSupport::TestCase
   end
 
   test "#update returns roadmap when valid" do
-    roadmap = roadmaps(:one)
+    roadmap = roadmaps(:frontend)
     params = { title: Faker::ProgrammingLanguage.name }
 
     actual = @roadmaps_service.update(roadmap.id, params)
@@ -64,7 +68,7 @@ class RoadmapsServiceTest < ActiveSupport::TestCase
   end
 
   test "#update returns roadmap with errors when invalid" do
-    roadmap = roadmaps(:one)
+    roadmap = roadmaps(:frontend)
     params = { title: nil }
 
     actual = @roadmaps_service.update(roadmap.id, params)
@@ -73,7 +77,7 @@ class RoadmapsServiceTest < ActiveSupport::TestCase
   end
 
   test "#delete destroys roadmap" do
-    roadmap = roadmaps(:one)
+    roadmap = roadmaps(:frontend)
 
     assert_difference("Roadmap.count", -1) do
       @roadmaps_service.delete(roadmap.id)
