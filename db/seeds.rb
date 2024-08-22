@@ -24,5 +24,8 @@ roadmaps = [
 ]
 
 roadmaps.each do |roadmap|
-  Roadmap.create({ title: roadmap })
+  Roadmap.create(
+    title: roadmap,
+    description: "Step by step guide to becoming a modern #{roadmap.downcase} developer in 2024",
+  )
 end
