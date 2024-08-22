@@ -37,6 +37,9 @@ gem "bootsnap", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
+# Read only access to static data files of reasonable size
+gem "frozen_record", "~> 0.27.2"
+
 gem "rubocop", "~> 1.59"
 gem "rubocop-shopify", require: false
 
