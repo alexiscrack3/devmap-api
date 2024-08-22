@@ -1,0 +1,12 @@
+- id: 1
+  value: "pending"
+  display_name: "Pending"
+- id: 2
+  value: "in_progress"
+  display_name: "In Progress"
+- id: 3
+  value: "skip"
+  display_name: "Skip"
+- id: 4
+  value: "done"
+  display_name: "Done"

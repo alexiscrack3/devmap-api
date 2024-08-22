@@ -3,6 +3,7 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
+require "frozen_record/test_helper"
 
 module ActiveSupport
   class TestCase
@@ -13,5 +14,13 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
+    setup do
+      test_fixtures_base_path = Rails.root.join("test/support/fixtures")
+      FrozenRecord::TestHelper.load_fixture(Status, test_fixtures_base_path)
+    end
+
+    teardown do
+      FrozenRecord::TestHelper.unload_fixtures
+    end
   end
 end
