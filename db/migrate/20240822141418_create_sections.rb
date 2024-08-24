@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class CreateSections < ActiveRecord::Migration[7.1]
   def change
-    create_table :sections do |t|
-      t.string :title
-      t.references :step, null: false, foreign_key: true
+    create_table(:sections) do |t|
+      t.string(:title)
+      t.references(:step, null: false, foreign_key: true)
 
       t.timestamps
     end
