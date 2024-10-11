@@ -11,9 +11,12 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+SubSection.destroy_all
 Section.destroy_all
 Step.destroy_all
 Roadmap.destroy_all
+
+ActiveRecord::Base.connection.reset_pk_sequence!(:sub_sections)
 ActiveRecord::Base.connection.reset_pk_sequence!(:sections)
 ActiveRecord::Base.connection.reset_pk_sequence!(:steps)
 ActiveRecord::Base.connection.reset_pk_sequence!(:roadmaps)
@@ -33,10 +36,18 @@ RoadmapRecord.each do |roadmap_record|
 
     sections = step_record["sections"] || []
     sections.each do |section_record|
-      Section.create!(
+      new_section = Section.create!(
         title: section_record["title"],
         step: new_step,
       )
+
+      subsections = section_record["sub_sections"] || []
+      subsections.each do |subsection_record|
+        SubSection.create!(
+          title: subsection_record,
+          section: new_section,
+        )
+      end
     end
   end
 end

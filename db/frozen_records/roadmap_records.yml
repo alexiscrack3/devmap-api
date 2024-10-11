@@ -61,6 +61,8 @@
         - title: "Server Side"
         - title: "CDN"
         - title: "Client Side"
+        - title: "HATEOAS"
+        - title: "Open API Specs"
 - id: 3
   title: "DevOps"
   steps: []
