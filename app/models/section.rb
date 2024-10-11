@@ -12,4 +12,5 @@
 #
 class Section < ApplicationRecord
   belongs_to :step
+  has_many :sub_sections, dependent: :destroy
 end
