@@ -18,122 +18,23 @@ ActiveRecord::Base.connection.reset_pk_sequence!(:sections)
 ActiveRecord::Base.connection.reset_pk_sequence!(:steps)
 ActiveRecord::Base.connection.reset_pk_sequence!(:roadmaps)
 
-roadmaps = [
-  {
-    title: "Frontend",
-    steps: [],
-  },
-  {
-    title: "Backend",
-    steps: [
-      {
-        title: "Internet",
-      },
-      {
-        title: "Pick a language",
-      },
-      {
-        title: "Version Control Systems",
-      },
-      {
-        title: "Repo Hosting Services",
-      },
-      {
-        title: "Relational Databases",
-      },
-      {
-        title: "Learn About APIs",
-      },
-      {
-        title: "Caching",
-      },
-      {
-        title: "Web Security",
-      },
-      {
-        title: "Testing",
-      },
-      {
-        title: "CI/CD",
-      },
-    ],
-  },
-  {
-    title: "DevOps",
-    steps: [],
-  },
-  {
-    title: "Ruby",
-    steps: [
-      {
-        title: "Basic Programming",
-        sections: [
-          {
-            title: "Syntax and Data Types",
-          },
-          {
-            title: "Variables and Constants",
-          },
-          {
-            title: "Control Structures",
-          },
-          {
-            title: "Loops",
-          },
-          {
-            title: "Exception Handling",
-          },
-          {
-            title: "Command Line Input/Output",
-          },
-        ],
-      },
-      {
-        title: "Advanced Topics",
-        sections: [
-          {
-            title: "Blocs, Procs and Lambdas",
-          },
-          {
-            title: "Modules and Mixins",
-          },
-          {
-            title: "Metaprogramming",
-          },
-          {
-            title: "Garbage Collection",
-          },
-          {
-            title: "Threading and Concurrency",
-          },
-          {
-            title: "Fibers",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Ruby on Rails",
-    steps: [],
-  },
-]
-
-roadmaps.each do |roadmap|
-  title = roadmap[:title]
+RoadmapRecord.each do |roadmap_record|
+  title = roadmap_record.title
   new_roadmap = Roadmap.create!(
     title:,
     description: "Step by step guide to becoming a modern #{title.capitalize} expert in #{Time.now.utc.year}",
   )
-  roadmap[:steps].each do |step|
+  steps = roadmap_record.steps || []
+  steps.each do |step_record|
     new_step = Step.create!(
-      title: step[:title],
+      title: step_record["title"],
       roadmap: new_roadmap,
     )
 
-    step[:sections]&.each do |section|
+    sections = step_record["sections"] || []
+    sections.each do |section_record|
       Section.create!(
-        title: section[:title],
+        title: section_record["title"],
         step: new_step,
       )
     end

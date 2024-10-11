@@ -1,0 +1,72 @@
+- id: 1
+  title: "Frontend"
+  steps:
+- id: 2
+  title: "Backend"
+  steps:
+    - title: "Internet"
+      sections:
+        - title: "How does the internet work?"
+        - title: "What is HTTP?"
+        - title: "What is domain name?"
+        - title: "What is hosting?"
+        - title: "DNS and how it works?"
+        - title: "Browsers and how they work?"
+    - title: "Pick a language"
+      sections:
+        - title: "JavaScript"
+        - title: "Go"
+        - title: "Python"
+        - title: "Ruby"
+        - title: "Java"
+        - title: "C#"
+        - title: "PHP"
+        - title: "Rust"
+    - title: "Version Control Systems"
+      sections:
+        - title: "Git"
+    - title: "Repo Hosting Services"
+      sections:
+        - title: "GitHub"
+        - title: "GitLab"
+        - title: "Bitbucket"
+    - title: "Relational Databases"
+      sections:
+        - title: "PostgreSQL"
+        - title: "MySQL"
+        - title: "MariaDB"
+        - title: "MS SQL"
+        - title: "Oracle"
+        - title: "SQLite"
+    - title: "Learn About APIs"
+      sections:
+        - title: "Authentication"
+          sub_sections:
+            - "JWT"
+            - "OAuth"
+            - "Basic Authentication"
+            - "Token Authentication"
+            - "Cookie based Authentication"
+            - "OpenID"
+            - "SAML"
+        - title: "REST"
+        - title: "JSON APIs"
+        - title: "SOAP"
+        - title: "gRPC"
+        - title: "GraphQL"
+    - title: "Caching"
+      sections:
+        - title: "Redis"
+        - title: "Memcached"
+        - title: "Server Side"
+        - title: "CDN"
+        - title: "Client Side"
+- id: 3
+  title: "DevOps"
+  steps: []
+- id: 4
+  title: "Ruby"
+  steps: []
+- id: 5
+  title: "Ruby on Rails"
+  steps: []
